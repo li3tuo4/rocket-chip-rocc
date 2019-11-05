@@ -16,7 +16,8 @@ import scala.math.max
 
 case class DCacheParams(
     nSets: Int = 64,
-    nWays: Int = 4,
+    //nWays: Int = 4,
+    nWays: Int = 8, //
     rowBits: Int = 64,
     nTLBEntries: Int = 32,
     tagECC: Option[String] = None,

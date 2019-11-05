@@ -124,6 +124,7 @@ class PTW(n: Int)(implicit edge: TLEdgeOut, p: Parameters) extends CoreModule()(
 
     val hits = tags.map(_ === pte_addr).asUInt & valid
     val hit = hits.orR
+    println("ptw valid size",size) //FIXME
     when (io.mem.resp.valid && traverse && !hit) {
       val r = Mux(valid.andR, plru.replace, PriorityEncoder(~valid))
       valid := valid | UIntToOH(r)
@@ -179,6 +180,8 @@ class PTW(n: Int)(implicit edge: TLEdgeOut, p: Parameters) extends CoreModule()(
         Mux(io.dpath.sfence.bits.rs1, valid & ~UIntToOH(io.dpath.sfence.bits.addr(idxBits+pgIdxBits-1, pgIdxBits)),
         Mux(io.dpath.sfence.bits.rs2, valid & g, 0.U))
     }
+
+println("L2TLB",coreParams.nL2TLBEntries) //FIXME
 
     val s0_valid = !l2_refill && arb.io.out.fire()
     val s1_valid = RegNext(s0_valid)

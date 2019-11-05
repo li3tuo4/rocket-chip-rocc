@@ -141,6 +141,8 @@ class TLB(instruction: Boolean, lgMaxSize: Int, nEntries: Int)(implicit edge: TL
     ppn
   }
 
+println(instruction,"L1 entries",totalEntries)
+
   // permission bit arrays
   when (do_refill && !invalidate_refill) {
     val waddr = Mux(io.ptw.resp.bits.ae, aeEntry.U, Mux(!io.ptw.resp.bits.homogeneous, specialEntry.U, r_refill_waddr))

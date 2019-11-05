@@ -17,7 +17,8 @@ import chisel3.experimental.dontTouch
 
 case class ICacheParams(
     nSets: Int = 64,
-    nWays: Int = 4,
+    //nWays: Int = 4,
+    nWays: Int = 8, //FIXME Tuo
     rowBits: Int = 128,
     nTLBEntries: Int = 32,
     cacheIdBits: Int = 0,
