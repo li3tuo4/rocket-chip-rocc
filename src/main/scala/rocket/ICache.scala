@@ -13,12 +13,11 @@ import freechips.rocketchip.tilelink._
 import freechips.rocketchip.util._
 import freechips.rocketchip.util.property._
 import chisel3.internal.sourceinfo.SourceInfo
-import chisel3.experimental.dontTouch
+import chisel3.dontTouch
 
 case class ICacheParams(
     nSets: Int = 64,
-    //nWays: Int = 4,
-    nWays: Int = 8, //FIXME Tuo
+    nWays: Int = 8,
     rowBits: Int = 128,
     nTLBEntries: Int = 32,
     cacheIdBits: Int = 0,

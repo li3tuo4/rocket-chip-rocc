@@ -4,7 +4,7 @@
 package freechips.rocketchip.util
 
 import Chisel._
-import chisel3.experimental.RawModule
+import chisel3.RawModule
 import freechips.rocketchip.config.Parameters
 import scala.math._
 

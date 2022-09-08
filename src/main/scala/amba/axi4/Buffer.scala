@@ -6,6 +6,7 @@ import Chisel._
 import chisel3.util.IrrevocableIO
 import freechips.rocketchip.config.Parameters
 import freechips.rocketchip.diplomacy._
+import freechips.rocketchip.diplomacy.ValName
 import scala.math.{min,max}
 
 // pipe is only used if a queue has depth = 1

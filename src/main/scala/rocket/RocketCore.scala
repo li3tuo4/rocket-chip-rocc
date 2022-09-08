@@ -27,7 +27,7 @@ case class RocketCoreParams(
   nPerfCounters: Int = 0,
   haveBasicCounters: Boolean = true,
   misaWritable: Boolean = true,
-  nL2TLBEntries: Int = 128,//FIXME Tuo modified from 0
+  nL2TLBEntries: Int = 128,
   mtvecInit: Option[BigInt] = Some(BigInt(0)),
   mtvecWritable: Boolean = true,
   fastLoadWord: Boolean = true,
@@ -540,14 +540,6 @@ class Rocket(implicit p: Parameters) extends CoreModule()(p)
                  Mux(wb_ctrl.mul, mul.map(_.io.resp.bits.data).getOrElse(wb_reg_wdata),
                  wb_reg_wdata))))
   when (rf_wen) { rf.write(rf_waddr, rf_wdata) }
-/*
-  when (wb_flushx_valid) {
-    rf.resetx()
-    //regfile_flushed := true
-    printf("@RegFile flushed\n")
-  }//Tuo flush regfile in WB stage
-*/
-
 
   // hook up control/status regfile
   csr.io.decode(0).csr := id_raw_inst(0)(31,20)

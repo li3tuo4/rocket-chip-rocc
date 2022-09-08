@@ -203,6 +203,12 @@ class WithRoccExample extends Config((site, here, up) => {
           generator = (p: Parameters) => {
             val counter = LazyModule(new CharacterCountExample()(p))
             counter
+          }),
+        RoCCParams(
+          opcodes = OpcodeSet.custom3,
+          generator = (p: Parameters) => {
+            val blackbox = LazyModule(new BlackBoxExample("RoccBlackBox")(p))
+            blackbox
           })
         ))
     }
