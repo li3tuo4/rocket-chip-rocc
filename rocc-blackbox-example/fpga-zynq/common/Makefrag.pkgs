@@ -1,0 +1,6 @@
+/home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/lib/testchipip.stamp: $(call lookup_scala_srcs, /home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/../testchipip) $(rocketchip_stamp)
+	rm -f /home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/../testchipip/lib
+	ln -s /home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/lib /home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/../testchipip/lib
+	cd /home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/../testchipip && $(SBT) ++$(SCALA_VERSION) package
+	cp /home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/../testchipip/target/scala-2.12/*.jar /home/lituo/workspace/riscv/riscv-zcu102/fpga-zynq/common/lib
+	touch $@
