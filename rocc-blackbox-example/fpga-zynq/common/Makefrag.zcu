@@ -70,7 +70,7 @@ src/tcl/make_bitstream_$(CONFIG).tcl: $(common)/make_bitstream.tcl
 	sed 's/BOARD_NAME_HERE/$(BOARD)/g;s/CHISEL_CONFIG_HERE/$(CONFIG)/g' \
 		$(common)/make_bitstream.tcl > src/tcl/make_bitstream_$(CONFIG).tcl
 
-src/verilog/%.v: $(ROCKET_DIR)/vsrc/%.v
+src/verilog/%.v: $(ROCKET_DIR)/vsrc/%.v $(ROCKET_DIR)/src/main/resources/vsrc/%.v
 	cp $< $@
 
 $(ROCKET_DIR)/lib/firrtl.jar: $(FIRRTL_JAR)
@@ -96,7 +96,7 @@ $(common_build)/$(TOP_MODULE).$(CONFIG).v: $(common_build)/$(TOP_MODULE).$(CONFI
 	$(FIRRTL) -i $< -o $@ -X verilog
 
 src/verilog/$(TOP_MODULE).$(CONFIG).v: $(common_build)/$(TOP_MODULE).$(CONFIG).v
-	cp $< $@
+	sed 's/\(.*\)|~\(.*\);/\1|(~\2);/g' $< > $@
 
 rocket: src/verilog/$(TOP_MODULE).$(CONFIG).v
 
